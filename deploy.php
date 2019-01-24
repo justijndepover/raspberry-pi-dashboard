@@ -65,7 +65,7 @@ task('deploy', [
     // 'upload:env',
     'deploy:vendors',
     'deploy:writable',
-    'artisan:migrate',
+    // 'artisan:migrate',
     // 'artisan:db:seed',
     'artisan:view:clear',
     'artisan:cache:clear',
