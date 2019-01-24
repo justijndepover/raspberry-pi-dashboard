@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 /*************************************************
  MAIN CONFIGURATION
  *************************************************/
-set('repository', 'https://github.com/in2red/raspberry-pi-dashboard');
+set('repository', 'https://github.com/justijndepover/raspberry-pi-dashboard.git');
 set('git_tty', true); // [Optional] Allocate tty for git on first deployment
 // Laravel shared file
 set('shared_files', [
