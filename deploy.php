@@ -29,11 +29,11 @@ set('keep_releases', 5);
  HOSTS
  *************************************************/
 // Staging
-host('http://192.168.0.172')
+host('192.168.0.172')
     ->user('pi')
     ->stage('staging')
     ->set('branch', 'master')
-    ->set('deploy_path', '/var/www');
+    ->set('deploy_path', '/var/www/domain.com');
 
 
 /*************************************************

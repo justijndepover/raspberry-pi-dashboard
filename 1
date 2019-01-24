@@ -1,0 +1,32 @@
+[192.168.0.172] > echo $0
+[192.168.0.172] < bash
+[192.168.0.172] > if [ ! -d /var/www/domain.com ]; then mkdir -p /var/www/domain.com; fi
+[192.168.0.172] > if [ ! -L /var/www/domain.com/current ] && [ -d /var/www/domain.com/current ]; then echo true; fi
+[192.168.0.172] > cd /var/www/domain.com && if [ ! -d .dep ]; then mkdir .dep; fi
+[192.168.0.172] > cd /var/www/domain.com && if [ ! -d releases ]; then mkdir releases; fi
+[192.168.0.172] > cd /var/www/domain.com && if [ ! -d shared ]; then mkdir shared; fi
+[192.168.0.172] > if [ -f /var/www/domain.com/.dep/deploy.lock ]; then echo 'true'; fi
+[192.168.0.172] > touch /var/www/domain.com/.dep/deploy.lock
+[192.168.0.172] > cd /var/www/domain.com && (if [ -h release ]; then echo 'true'; fi)
+[192.168.0.172] < true
+[192.168.0.172] > cd /var/www/domain.com && (rm -rf "$(readlink release)")
+[192.168.0.172] > cd /var/www/domain.com && (rm release)
+[192.168.0.172] > cd /var/www/domain.com && ([ -d releases ] && [ "$(ls -A releases)" ] && echo "true" || echo "false")
+[192.168.0.172] < false
+[192.168.0.172] > cd /var/www/domain.com && (if [ -d /var/www/domain.com/releases/1 ]; then echo 'true'; fi)
+[192.168.0.172] > cd /var/www/domain.com && (date +"%Y%m%d%H%M%S")
+[192.168.0.172] < 20190124170401
+[192.168.0.172] > cd /var/www/domain.com && (echo '20190124170401,1' >> .dep/releases)
+[192.168.0.172] > cd /var/www/domain.com && (mkdir /var/www/domain.com/releases/1)
+[192.168.0.172] > cd /var/www/domain.com && (if [[ $(man ln 2>&1 || ln -h 2>&1 || ln --help 2>&1) =~ '--relative' ]]; then echo 'true'; fi)
+[192.168.0.172] < true
+[192.168.0.172] > cd /var/www/domain.com && (ln -nfs --relative /var/www/domain.com/releases/1 /var/www/domain.com/release)
+[192.168.0.172] > which git
+[192.168.0.172] < /usr/bin/git
+[192.168.0.172] > /usr/bin/git version
+[192.168.0.172] < git version 2.11.0
+[192.168.0.172] > if [ -h /var/www/domain.com/release ]; then echo 'true'; fi
+[192.168.0.172] < true
+[192.168.0.172] > readlink /var/www/domain.com/release
+[192.168.0.172] < releases/1
+[192.168.0.172] > /usr/bin/git clone -b master  --recursive -q https://github.com/in2red/raspberry-pi-dashboard /var/www/domain.com/releases/1 2>&1
