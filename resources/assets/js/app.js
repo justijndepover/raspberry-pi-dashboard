@@ -15,7 +15,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('light-on', require('./components/LightOn.vue'));
+Vue.component('light-off', require('./components/LightOff.vue'));
 
 const app = new Vue({
     el: '#app'
